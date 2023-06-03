@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico">
+    <title>포케포케</title>
+    <style>
+        #pokeimg{
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #sel{
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        select{
+            margin-top: 20px;
+            width: 200px;
+            height: 50px;
+            padding: 10px;
+            font-size: large;
+            text-align: center;
+            border-color: gray;
+            border-radius: 10px;
+        }
+
+        #mosterBall {
+            height: 300px;
+            width: 300px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="sel">
+        <label for="poke">마음에 드는 포켓몬을 고르고 몬스터볼을 누르세요</label>
+        <select name="poke" id="poke">
+            <option value="Oshawott" id="Oshawott">수댕이</option>
+            <option value="Ash" id="Ash">지우</option>
+            <option value="Emolga" id="Emolga">에몽가</option>
+            <option value="Squirtle" id="Squirtle">꼬부기</option>
+        </select>
+
+    </div>
+    <div id="pokeimg">
+        <img id="monsterBall" src="./image/monsterball.PNG" onclick="hoo()">
+        <h1 id="stateText"><strong></strong></h1>
+    </div>
+    <script>
+        var cnt = 0; //이벤트 발생을 위한 카운터
+
+        function hoo(){
+
+            cnt ++;//이벤트 발생을 위한 카운터
+            console.log(cnt);//테스트
+
+            var mBall = document.getElementById("monsterBall");//몬스터볼 선택
+            var monster = document.querySelector("select");//포켓몬 선택
+
+            const opchild = document.createElement("option");
+            opchild.value = "Giratina";
+            opchild.id = "Giratina";
+            opchild.textContent = "기라티나";
+
+            if(cnt===10){
+                monster.appendChild(opchild);
+                alert("기라티나 발생!");
+            }
+
+            if ( !mBall.classList.contains("on")){
+                if(monster.value === "Oshawott") {
+                    document.getElementById("stateText").innerHTML = "나와라 수댕이!";
+                    mBall.src = " ./image/Oshawott.PNG";
+                }
+                else if(monster.value === "Emolga"){
+                    document.getElementById("stateText").innerHTML = "나와라 에몽가!";
+                    mBall.src = "./image/Emolga.PNG";
+                }
+                else if(monster.value === "Ash"){
+                    document.getElementById("stateText").innerHTML = "지우띠";
+                    mBall.src = "./image/legend.PNG";
+                }
+                else if(monster.value === "Squirtle"){
+                    document.getElementById("stateText").innerHTML = "꼬부기 커엽다";
+                    mBall.src = "./image/Squirtle.PNG";
+                    document.body.style.backgroundColor = "BLUE"; // 배경색 변경
+                    document.body.style.color = "white"; // 배경색 변경
+                }
+                //스페셜 이벤트
+                else if (monster.value === "Giratina") {
+                    var opacity = 0; // 초기 투명도
+                    mBall.src = "./image/Giratina.PNG";
+                    document.body.style.color = "white";
+                    document.body.style.background = "url('./image/GiratinaBack1.jpg') no-repeat";
+                    document.body.style.backgroundSize = "cover";
+                    document.getElementById("stateText").innerHTML = "기라티나 ㄷ ㄷ";
+
+                    var intervalId = setInterval(function () {
+                        if (opacity < 1) {
+                            opacity += 0.1; // 투명도 증가량
+                            document.body.style.opacity = opacity;
+                        } else {
+                            clearInterval(intervalId); // 애니메이션 종료
+                        }
+                    }, 100); // 100ms 마다 투명도 업데이트
+                }
+
+            }
+            else {
+                mBall.src = "./image/monsterball.PNG";
+                document.body.style.backgroundColor = "white";
+                document.body.style.background = "none";
+                document.body.style.color = "black";
+                document.getElementById("stateText").innerHTML = "";
+            }
+            mBall.classList.toggle("on");
+        }
+
+    </script>
+</body>
+</html>
