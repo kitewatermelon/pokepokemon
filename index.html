@@ -52,6 +52,16 @@
             background-color: yellow;
             color:brown;
         }
+
+        .dark{
+            background-color: black;
+            color:red;
+        }
+
+        #Giratina{
+            background-color: black;
+            color:gold;
+        }
     </style>
 
 </head>
@@ -78,85 +88,91 @@
         var cnt = 0; //이벤트 발생을 위한 카운터
         var inhoo = 0; //이벤트 발생을 위한 카운터
 
-        function hoo(){
+        function hoo() {
+  cnt++; //이벤트 발생을 위한 카운터
+  console.log(cnt); //테스트
 
-            cnt ++;//이벤트 발생을 위한 카운터
-            console.log(cnt);//테스트
+  var mBall = document.getElementById("monsterBall"); //몬스터볼 선택
+  var monster = document.querySelector("select"); //포켓몬 선택
+  var poketype = document.querySelector("option:checked"); //선택된 포켓몬 타입
 
-            var mBall = document.getElementById("monsterBall");//몬스터볼 선택
-            var monster = document.querySelector("select");//포켓몬 선택
+  if (poketype.classList.contains("water")) {
+    document.body.style.backgroundColor = "skyblue"; // 배경색 변경
+    document.body.style.color = "white"; // 배경색 변경
+  } else if (poketype.classList.contains("electric")) {
+    document.body.style.backgroundColor = "yellow"; // 배경색 변경
+    document.body.style.color = "brown"; // 배경색 변경
+  }
 
-            const opchild = document.createElement("option");
-            opchild.value = "Giratina";
-            opchild.id = "Giratina";
-            opchild.textContent = "기라티나";
+  const opchild = document.createElement("option");
+  opchild.value = "Giratina";
+  opchild.id = "Giratina";
+  opchild.textContent = "기라티나";
 
-            if(cnt===10){
-                monster.appendChild(opchild);
-                alert("기라티나 발생!");
-            }
+  if (cnt === 10) {
+    monster.appendChild(opchild);
+    alert("기라티나 발생!");
+  }
 
-            if ( !mBall.classList.contains("on")){
-                if(monster.value === "Oshawott") {
-                    document.getElementById("stateText").innerHTML = "나와라 수댕이!";
-                    mBall.src = " ./image/Oshawott.PNG";
-                }
-                else if(monster.value === "Emolga"){
-                    document.getElementById("stateText").innerHTML = "나와라 에몽가!";
-                    mBall.src = "./image/Emolga.PNG";
-                }
-                else if(monster.value === "Ash"){
-                    document.getElementById("stateText").innerHTML = "지우띠";
-                    mBall.src = "./image/legend.PNG";
-                }
-                else if(monster.value === "Squirtle"){
-                    document.getElementById("stateText").innerHTML = "꼬부기 커엽다";
-                    mBall.src = "./image/Squirtle.PNG";
-                    document.body.style.backgroundColor = "BLUE"; // 배경색 변경
-                    document.body.style.color = "white"; // 배경색 변경
-                }
-                else if (monster.value === "inhoo") {
-                    inhoo ++;
-                    document.getElementById("stateText").innerHTML = "달려라 라니~~";
-                    mBall.src = "./image/inhoo.jpg";
-                    mBall.style.width = "300px";
-                    mBall.style.height = "300px";
-                    mBall.style.borderRadius= "50%";
+  if (!mBall.classList.contains("on")) {
+    if (monster.value === "Oshawott") {
+      document.getElementById("stateText").innerHTML = "나와라 수댕이!";
+      mBall.src = "./image/Oshawott.PNG";
+    }
+    else if (monster.value === "Squirtle") {
+      document.getElementById("stateText").innerHTML = "꼬부기 커엽다";
+      mBall.src = "./image/Squirtle.PNG";
+    }
+    else if (monster.value === "Emolga") {
+      document.getElementById("stateText").innerHTML = "나와라 에몽가!";
+      mBall.src = "./image/Emolga.PNG";
+    }
+    else if (monster.value === "Ash") {
+      document.getElementById("stateText").innerHTML = "지우띠";
+      mBall.src = "./image/legend.PNG";
+    }
+    else if (monster.value === "inhoo") {
+      inhoo++;
+      document.getElementById("stateText").innerHTML = "달려라 라니~~";
+      mBall.src = "./image/inhoo.jpg";
+      mBall.style.width = "300px";
+      mBall.style.height = "300px";
+      mBall.style.borderRadius = "50%";
 
-                    if (inhoo == 10){
-                        mBall.src = "./image/injamong.png";
-                        inhoo = 0;
-                    }
-                }
-                //스페셜 이벤트
-                else if (monster.value === "Giratina") {
-                    var opacity = 0; // 초기 투명도
-                    mBall.src = "./image/Giratina.PNG";
-                    document.body.style.color = "white";
-                    document.body.style.background = "url('./image/GiratinaBack1.jpg') no-repeat";
-                    document.body.style.backgroundSize = "cover";
-                    document.getElementById("stateText").innerHTML = "기라티나 ㄷ ㄷ";
+      if (inhoo == 10) {
+        mBall.src = "./image/injamong.png";
+        inhoo = 0;
+      }
+    }
+    //스페셜 이벤트 기라티나!
+    else if (monster.value === "Giratina") {
+      var opacity = 0; // 초기 투명도
+      mBall.src = "./image/Giratina.PNG";
+      document.body.style.color = "white";
+      document.body.style.background = "url('./image/GiratinaBack1.jpg') no-repeat";
+      document.body.style.backgroundSize = "cover";
+      document.body.style.color = "gold";
 
-                    var intervalId = setInterval(function () {
-                        if (opacity < 1) {
-                            opacity += 0.1; // 투명도 증가량
-                            document.body.style.opacity = opacity;
-                        } else {
-                            clearInterval(intervalId); // 애니메이션 종료
-                        }
-                    }, 100); // 100ms 마다 투명도 업데이트
-                }
+      document.getElementById("stateText").innerHTML = "기라티나 ㄷ ㄷ";
 
-            }
-            else {
-                mBall.src = "./image/monsterball.PNG";
-                document.body.style.backgroundColor = "white";
-                document.body.style.background = "none";
-                document.body.style.color = "black";
-                document.getElementById("stateText").innerHTML = "";
-            }
-            mBall.classList.toggle("on");
+      var intervalId = setInterval(function () {
+        if (opacity < 1) {
+          opacity += 0.1; // 투명도 증가량
+          document.body.style.opacity = opacity;
+        } else {
+          clearInterval(intervalId); // 애니메이션 종료
         }
+      }, 100); // 100ms 마다 투명도 업데이트
+    }
+  } else {
+    mBall.src = "./image/monsterball.PNG";
+    document.body.style.backgroundColor = "white";
+    document.body.style.background = "none";
+    document.body.style.color = "black";
+    document.getElementById("stateText").innerHTML = "";
+  }
+  mBall.classList.toggle("on");
+}
 
     </script>
 </body>
