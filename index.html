@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="./image/favicon.ico">
     <title>포케포케</title>
     <style>
         #pokeimg{
@@ -36,6 +36,22 @@
             height: 300px;
             width: 300px;
         }
+
+        #inhoo{
+            height: 300px;
+            width: 300px;
+        }
+
+        /*타입별 설정*/
+        .water {
+            background-color: skyblue;
+            color:white;
+        }
+
+        .electric{
+            background-color: yellow;
+            color:brown;
+        }
     </style>
 
 </head>
@@ -43,10 +59,14 @@
     <div id="sel">
         <label for="poke">마음에 드는 포켓몬을 고르고 몬스터볼을 누르세요</label>
         <select name="poke" id="poke">
-            <option value="Oshawott" id="Oshawott">수댕이</option>
+            <option value="Oshawott" id="Oshawott" class="water">수댕이</option>
+            <option value="Squirtle" id="Squirtle" class="water">꼬부기</option>
+            <option value="Zoroark" id="Zoroark" class="dark">조로아크</option>
+            <option value="Emolga" id="Emolga" class="electric">에몽가</option>
             <option value="Ash" id="Ash">지우</option>
-            <option value="Emolga" id="Emolga">에몽가</option>
-            <option value="Squirtle" id="Squirtle">꼬부기</option>
+            <option value="inhoo" id="inhoo" >고라니</option>
+
+
         </select>
 
     </div>
@@ -56,6 +76,7 @@
     </div>
     <script>
         var cnt = 0; //이벤트 발생을 위한 카운터
+        var inhoo = 0; //이벤트 발생을 위한 카운터
 
         function hoo(){
 
@@ -93,6 +114,19 @@
                     mBall.src = "./image/Squirtle.PNG";
                     document.body.style.backgroundColor = "BLUE"; // 배경색 변경
                     document.body.style.color = "white"; // 배경색 변경
+                }
+                else if (monster.value === "inhoo") {
+                    inhoo ++;
+                    document.getElementById("stateText").innerHTML = "달려라 라니~~";
+                    mBall.src = "./image/inhoo.jpg";
+                    mBall.style.width = "300px";
+                    mBall.style.height = "300px";
+                    mBall.style.borderRadius= "50%";
+
+                    if (inhoo == 10){
+                        mBall.src = "./image/injamong.png";
+                        inhoo = 0;
+                    }
                 }
                 //스페셜 이벤트
                 else if (monster.value === "Giratina") {
